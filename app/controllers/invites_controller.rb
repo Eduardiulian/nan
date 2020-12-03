@@ -21,6 +21,14 @@ class InvitesController < ApplicationController
   def edit
   end
 
+  def accept
+    logger.info("~log:" + "accept")
+    logger.info(params.to_s)
+    record = Invite.find_by(reciever: params[:reciever], sender: params[:sender])
+    record.accepted = true
+    record.save 
+  end
+
   # POST /invites
   # POST /invites.json
   def create
