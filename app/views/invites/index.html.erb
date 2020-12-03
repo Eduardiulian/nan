@@ -12,7 +12,7 @@
     </tr>
   </thead>
 
-  <tbody>
+  <tbody id="dynamic">
     <% @invites.each do |invite| %>
       <tr>
         <td><%= invite.sender %></td>
@@ -27,5 +27,15 @@
 </table>
 
 <br>
-
+<script>
+//  document.addEventListener('DOMContentLoaded', function () {
+//  dynamic = document.getElementById("dynamic")
+//  setInterval(function() {
+//            // console.log("~tick")
+//            // dynamic.load('/invites');
+//            window.location.reload(false);
+//          }, 10000);
+//})
+</script>
 <%= link_to 'New Invite', new_invite_path %>
+

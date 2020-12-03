@@ -27,6 +27,7 @@ class InvitesController < ApplicationController
     logger.info("~log_invite: " + invite_params.to_s)
     @invite = Invite.new(invite_params)
     @invite.sender = current_user.email
+    @invite.accepted = false
 
 
     respond_to do |format|

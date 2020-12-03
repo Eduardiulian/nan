@@ -1,20 +1,20 @@
 <%= form_for :invite, url: "/invites", :method => "post",
 :remote => true, :id => 'input_form' do |form|%>
 
-<div class="field">
+<!-- <div class="field">
     <%= form.label 'sender' %>
     <%= form.text_field 'sender' %>
-  </div>
+  </div> -->
 
   <div class="field">
     <%= form.label 'reciever' %>
     <%= form.text_field 'reciever' %>
   </div>
 
-  <div class="field">
+<!--   <div class="field">
     <%= form.label 'accepted' %>
     <%= form.check_box 'accepted' %>
-  </div>
+  </div> -->
 
   <div class="actions">
     <%= form.submit %>
@@ -22,3 +22,82 @@
 <% end %>
 <p>auth:</p>
 <p><%= current_user.email %></p>
+
+
+
+
+
+
+<h1>Invites - outgoing</h1>
+
+<% @invites = Invite.where(sender: current_user.email) %>
+<% unless @invites.empty? %>
+
+<table>
+  <thead>
+    <tr>
+      <th>Sender</th>
+      <th>Reciever</th>
+      <th>Accepted</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody id="dynamic">
+    <% @invites.each do |invite| %>
+      <tr>
+        <td><%= invite.sender %></td>
+        <td><%= invite.reciever %></td>
+        <td><%= invite.accepted %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<% else %>
+<p>empty</p>
+<%end%>
+
+<br/>
+
+<h1>Invites - incoming</h1>
+
+<% @invites = Invite.where(reciever: current_user.email) %>
+<% unless @invites.empty? %>
+
+<table>
+  <thead>
+    <tr>
+      <th>Sender</th>
+      <th>Reciever</th>
+      <th>Accepted</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody id="dynamic">
+  	<% @invites = Invite.where(reciever: current_user.email) %>
+    <% @invites.each do |invite| %>
+      <tr>
+        <td><%= invite.sender %></td>
+        <td><%= invite.reciever %></td>
+        <td><%= invite.accepted %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<% else %>
+<p>empty</p>
+<%end%>
+
+<script>
+ document.addEventListener('DOMContentLoaded', function () {
+ dynamic = document.getElementById("dynamic")
+ setInterval(function() {
+           console.log("~refresh")
+           // dynamic.load('/invites');
+           window.location.reload(false);
+         }, 10000);
+})
+</script>
