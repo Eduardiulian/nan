@@ -1,0 +1,22 @@
+<%= form_for :invite, url: "/invites", :method => "post",
+:remote => true, :id => 'input_form' do |form|%>
+
+<div class="field">
+    <%= form.label 'sender' %>
+    <%= form.text_field 'sender' %>
+  </div>
+
+  <div class="field">
+    <%= form.label 'reciever' %>
+    <%= form.text_field 'reciever' %>
+  </div>
+
+  <div class="field">
+    <%= form.label 'accepted' %>
+    <%= form.check_box 'accepted' %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

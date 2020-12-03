@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_12_03_100623) do
+ActiveRecord::Schema.define(version: 2020_12_03_165736) do
 
   create_table "cached_results", force: :cascade do |t|
     t.string "input"
@@ -18,6 +18,14 @@ ActiveRecord::Schema.define(version: 2020_12_03_100623) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["input"], name: "index_cached_results_on_input", unique: true
+  end
+
+  create_table "invites", force: :cascade do |t|
+    t.string "sender"
+    t.string "reciever"
+    t.boolean "accepted"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "users", force: :cascade do |t|

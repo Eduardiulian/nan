@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :invites
   get 'sessions/new'
   get 'sessions/create'
   get 'sessions/destroy'
@@ -16,5 +17,6 @@ Rails.application.routes.draw do
   get 'logout', to: 'sessions#destroy', as: 'logout'
   get 'edit', to: 'users#edit', as: 'edit'
   get 'userspage', to: 'users#index', as: 'userspage'
+  get 'invitesend', to: 'invites#send', as: 'invitesend'
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end

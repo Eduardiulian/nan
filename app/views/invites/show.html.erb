@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Sender:</strong>
+  <%= @invite.sender %>
+</p>
+
+<p>
+  <strong>Reciever:</strong>
+  <%= @invite.reciever %>
+</p>
+
+<p>
+  <strong>Accepted:</strong>
+  <%= @invite.accepted %>
+</p>
+
+<%= link_to 'Edit', edit_invite_path(@invite) %> |
+<%= link_to 'Back', invites_path %>
