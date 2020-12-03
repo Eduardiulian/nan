@@ -26,6 +26,7 @@ class InvitesController < ApplicationController
   def create
     logger.info("~log_invite: " + invite_params.to_s)
     @invite = Invite.new(invite_params)
+    @invite.sender = current_user.email
 
 
     respond_to do |format|
