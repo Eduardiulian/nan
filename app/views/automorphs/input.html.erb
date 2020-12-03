@@ -1,0 +1,38 @@
+<h1>Automorphs#input</h1>
+<p>Find me in app/views/automorphs/input.html.erb</p>
+<p>Search of full squares sequence(e.g. 7 1 4 9 14 16 -> [1, 4, 9], [16]), use space as separator</p>
+<%= form_tag("/automorphs/view", :method => "get") do %>
+<%= label_tag("Sequence to search in:") %>
+<%= text_field_tag(:search_range) %>
+<br/>
+<br/>
+<%= submit_tag("Output result") %>
+<% end %> 
+<br/>
+
+<%= form_tag("/automorphs/cached", :method => "get") do %>
+<%= submit_tag("Output cache as xml") %>
+<% end %>
+
+<%= form_tag("/automorphs/userlist", :method => "get") do %>
+<%= submit_tag("Output users as xml") %>
+<% end %>
+
+<% if current_user %>
+<br/>
+Logged in as <%= current_user.email %>
+<br/>
+<%= link_to "Logout", logout_path %>
+<% else %>
+
+
+<%= link_to "Sign Up", signup_path %> or 
+<%= link_to "Log In", login_path %>
+<br/>
+
+<% end %>
+<br/>
+<%= link_to 'Edit account', edit_path %>
+<br/>
+<%= link_to 'Users list', userspage_path %>
+<p id="notice"><%= notice %></p>

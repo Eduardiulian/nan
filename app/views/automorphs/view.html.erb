@@ -1,0 +1,46 @@
+<h1>Automorphs#view</h1>
+<p>Find me in app/views/automorphs/view.html.erb</p>
+<table>
+	<p id="result">
+		<% if @result.match?(/err/)%>
+		<%case @result.last.to_i%>
+		<%when 1%>
+		<%="nil input"%> 
+		<%when 2%>
+		<%="incorrect input"%>
+		<%when 3%>
+		<%="no such sequences to output"%>
+		<%else%>
+		<%="unkonown error"%>
+		<%end%>
+		<%else%>
+		<% @result = @result.split("],").map{|x| x.gsub("[", "")}.map{|x| x.gsub("]","")} %>
+		<% if @result == [""] %>
+		<p>no target subsequences found</p>
+		<% else %>
+		<table>
+			<tr><td>sequence</td><td>size</td></tr>
+			<% @result.each do |elem| %>
+			<% unless elem.size == 0 %>
+			<tr>
+				<td><%= elem%></td>
+				<td><%= elem.split(', ').size%></td>
+			</tr>
+			<% end %>
+			<% end %>
+
+			<tr>
+				<td>longest sequence:</td>
+				<td><%= @result.max{|elem, next_elem| elem.split(', ').size <=> 
+					next_elem.split(', ').size}%></td>
+			</tr>
+			<tr>
+				<td>Max size:</td>
+				<td><%= @result.max{|elem, next_elem| elem.split(', ').size <=> 
+					next_elem.split(', ').size}.split(', ').size%></td>
+			</tr>
+		</table>
+		<% end %>
+		<%end%>
+	</p> 
+	<%= link_to "Search in other sequence(array)", :automorphs_input %>
