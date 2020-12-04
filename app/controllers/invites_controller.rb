@@ -33,13 +33,37 @@ class InvitesController < ApplicationController
   # POST /invites.json
   def create
     logger.info("~log_invite: " + invite_params.to_s)
+    logger.info("~log_invite: " + invite_params["reciever"])
     @invite = Invite.new(invite_params)
     @invite.sender = current_user.email
     @invite.accepted = false
 
+    invite_old = Invite.find_by(sender: current_user.email, reciever: invite_params["reciever"])
+    invite_back = Invite.find_by(reciever: current_user.email, sender: invite_params["reciever"])
+
+    logger.info("~log_old: " + invite_old.nil?.to_s)
+    logger.info("~log_back: " + invite_back.nil?.to_s)
+
+    ok = true
+
+    if invite_old.nil?
+      ok = @invite.save
+    end
+
+    unless invite_back.nil?
+      invite_back.accepted = true
+      ok = ((invite_back.save) && ok)
+      if invite_old.nil?
+        @invite.accepted = true
+        ok = ((@invite.save) && ok)
+      else
+        invite_old.accepted = true
+        ok = ((invite_old.save) && ok)
+      end
+    end
 
     respond_to do |format|
-      if @invite.save
+      if ok
         #format.html { redirect_to @invite, notice: 'Invite was successfully created.' }
         format.json { render :show, status: :created, location: @invite }
       else
@@ -83,4 +107,4 @@ class InvitesController < ApplicationController
     def invite_params
       params.require(:invite).permit(:sender, :reciever, :accepted)
     end
-end
+  end
