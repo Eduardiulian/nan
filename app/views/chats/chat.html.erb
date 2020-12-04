@@ -1,2 +1,9 @@
 <h1>Chats#chat</h1>
 <p>Find me in app/views/chats/chat.html.erb</p>
+<%= form_for :invite, url: "/chats/refresh.json", 
+				:method => "get", :remote => false, :id => 'input_form' do |form|%>
+				<div class="actions">
+					<%= form.submit "refresh"%>
+				</div>
+				<% end %>
+<div id="dynamic"></div>
