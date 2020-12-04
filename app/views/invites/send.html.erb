@@ -36,7 +36,7 @@
 <table>
 	<thead>
 		<tr>
-			<th>Sender</th>
+			<!-- <th>Sender</th> -->
 			<th>Reciever</th>
 			<th>Accepted</th>
 			<th colspan="3"></th>
@@ -46,7 +46,7 @@
 	<tbody id="dynamic">
 		<% @invites.each do |invite| %>
 		<tr>
-			<td><%= invite.sender %></td>
+			<!-- <td><%= invite.sender %></td> -->
 			<td><%= invite.reciever %></td>
 			<td><%= invite.accepted %></td>
 		</tr>
@@ -69,18 +69,17 @@
 	<thead>
 		<tr>
 			<th>Sender</th>
-			<th>Reciever</th>
+			<!-- <th>Reciever</th> -->
 			<th>Accepted</th>
 			<th colspan="3"></th>
 		</tr>
 	</thead>
 
 	<tbody id="dynamic">
-		<% @invites = Invite.where(reciever: current_user.email) %>
 		<% @invites.each do |invite| %>
 		<tr>
 			<td><%= invite.sender %></td>
-			<td><%= invite.reciever %></td>
+			<!-- <td><%= invite.reciever %></td> -->
 			<td><%= invite.accepted %></td>
 			<td>
 				<% unless invite.accepted %>

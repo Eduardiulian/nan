@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_12_03_165736) do
+ActiveRecord::Schema.define(version: 2020_12_04_094318) do
 
   create_table "cached_results", force: :cascade do |t|
     t.string "input"
@@ -24,6 +24,14 @@ ActiveRecord::Schema.define(version: 2020_12_03_165736) do
     t.string "sender"
     t.string "reciever"
     t.boolean "accepted"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "messages", force: :cascade do |t|
+    t.string "sender"
+    t.string "reciever"
+    t.string "text"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

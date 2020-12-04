@@ -38,11 +38,12 @@ class InvitesController < ApplicationController
     @invite.sender = current_user.email
     @invite.accepted = false
 
+    # check if target exists?
     invite_old = Invite.find_by(sender: current_user.email, reciever: invite_params["reciever"])
     invite_back = Invite.find_by(reciever: current_user.email, sender: invite_params["reciever"])
 
-    logger.info("~log_old: " + invite_old.nil?.to_s)
-    logger.info("~log_back: " + invite_back.nil?.to_s)
+    logger.info("~log_no_old: " + invite_old.nil?.to_s)
+    logger.info("~log_no_back: " + invite_back.nil?.to_s)
 
     ok = true
 
