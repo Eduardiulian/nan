@@ -8,41 +8,36 @@
 		<tr>
 			<th>Username</th>
 			<!-- <th>Reciever</th>
-			<th>Accepted</th> -->
-			<th colspan="3"></th>
-		</tr>
-	</thead>
+				<th>Accepted</th> -->
+				<th colspan="3"></th>
+			</tr>
+		</thead>
 
-	<tbody id="dynamic">
-		<% @invites.each do |invite| %>
-		<tr>
-			<!-- <td><%= invite.sender %></td> -->
-			<td><%= invite.reciever %></td>
-			<!-- <td><%= invite.accepted %></td> -->
-			<td>
-				<%= form_for :invite, url: "/chats/chat?target_email=#{invite.reciever}", 
-				:method => "get", :remote => false, :id => 'input_form' do |form|%>
-				<div class="actions">
-					<%= form.submit "go to chat"%>
-				</div>
-				<% end %>
-			</td>
-		</tr>
-		<% end %>
-	</tbody>
-</table>
+		<tbody id="dynamic">
+			<% @invites.each do |invite| %>
+			<tr>
+				<!-- <td><%= invite.sender %></td> -->
+				<td><%= invite.reciever %></td>
+				<!-- <td><%= invite.accepted %></td> -->
+				<td>
+					<%= link_to 'Go to chat', "/chats/chat?target_email=#{invite.reciever}", class: "btn"%>
+				</td>
+			</tr>
+			<% end %>
+		</tbody>
+	</table>
 
-<% else %>
-<p>empty</p>
-<%end%>
+	<% else %>
+	<p>empty</p>
+	<%end%>
 
-<script>
-	document.addEventListener('DOMContentLoaded', function () {
-		dynamic = document.getElementById("dynamic")
-		setInterval(function() {
-			console.log("~refresh")
+	<script>
+		document.addEventListener('DOMContentLoaded', function () {
+			dynamic = document.getElementById("dynamic")
+			setInterval(function() {
+				console.log("~refresh")
            // dynamic.load('/invites');
            window.location.reload(false);
        }, 10000);
-	})
-</script>
+		})
+	</script>
