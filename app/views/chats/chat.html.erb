@@ -1,11 +1,66 @@
+<style>
+	.border {
+		padding: 15px;
+	}
+	.msg {
+		word-wrap: break-word;
+		width: 300px;
+		align-self: flex-end;
+
+	}
+	td {
+		align-content: flex-end;
+	}
+	#msgFeed {
+		border: 0px;
+		width: 100%;
+	}
+</style>
+
+
 <h1>Chats#chat</h1>
 <p>Find me in app/views/chats/chat.html.erb</p>
 
 <%= link_to 'refresh', "/chats/refresh.json", class: "btn"%>
 <div id="dynamic"></div>
-<p id="result"></p>
+
+
+<div class="row justify-content-center">
+	<div class="col-8 border rounded" id="dialog">
+
+	</div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 <script>
+	// ===========================================================
+	function renderSideMsg(text){
+		s = "<tr><td>" +
+		"<h5><div class=\"border msg rounded\">" + text + "</div></h5>" + 
+		"</td><td></td></tr>"
+		return s
+	}
+
+	function renderUserMsg(text){
+		s = "<tr><td></td><td>" +
+		"<div class=\"border msg rounded\"><h5>" + text + "</h5></div>" + 
+		"</td></tr>"
+		return s
+	}
+
+
 	function getParameterByName(name, url = window.location.href) {
 		name = name.replace(/[\[\]]/g, '\\$&');
 		var regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)'),
@@ -17,41 +72,54 @@
 	var email = getParameterByName('target_email');
 	console.log(email)
 
-	handleAjaxSuccess = function (event) {
+
+
+
+	handleAjaxSuccess = function (data, user) {
 		console.log("ajax success")
-		[data, status, xhr] = event.detail;
-		var result = document.getElementById("result");
+		console.log(data.type)
+		//[data, status, xhr] = event.detail;
+		var result = document.getElementById("dialog");
 	//document.write("~tick")
-	result.innerHTML = data.value
+	msgBlock = ""
+	data.forEach(function (item, i, arr) {
+      	//result.innerHTML += item.sender
+      	msgBlock += renderSideMsg("ooiyouib;biuobioboboubobobiobobobobo;bbobo")
+      	msgBlock += renderUserMsg(item.text)
+      });
+	result.innerHTML = "<table class=\"table-borderless\" id=\"msgFeed\">" + msgBlock + "</table>"
 }
 
 
-document.addEventListener('DOMContentLoaded', function () {
-	console.log("listener init")
-	document.addEventListener(
-		'ajax:success', handleAjaxSuccess)
-})
+// document.addEventListener('DOMContentLoaded', function () {
+// 	console.log("listener init")
+// 	document.addEventListener(
+// 		'ajax:success', handleAjaxSuccess)
+// })
 
 const request = new XMLHttpRequest();
 
 setInterval(function() {
 
-console.log("try request")
-const url = "/chats/refresh.json?target_email=" + email;
-request.open('GET', url); 
-request.setRequestHeader('Content-Type', 'application/json');
-request.send();
+	console.log("try request")
+	const url = "/chats/refresh.json?target_email=" + email;
+	request.open('GET', url); 
+	request.setRequestHeader('Content-Type', 'application/json');
+	request.send();
 
- }, 5000);
+}, 5000);
 
 request.addEventListener("readystatechange", () => {
 	console.log("state change");
-if (request.readyState === 4 && request.status === 200) {
-	
+	if (request.readyState === 4 && request.status === 200) {
+
       // выводим в консоль то что ответил сервер
-	  console.log("200/4 response");
-	  console.log(JSON.parse(request.responseText));
-	}
+      console.log("200/4 response");
+      console.log(JSON.parse(request.responseText));
+      data = JSON.parse(request.responseText);
+      handleAjaxSuccess(data, email);
+
+  }
 });
 	// if (data.type == "Array") {
 	// 	s = "<table><tr><td>sequence</td><td>size</td></tr>"
