@@ -1,5 +1,103 @@
-<%= form_for :invite, url: "/invites", :method => "post",
-:remote => true, :id => 'input_form' do |form|%>
+
+<style>
+	td.accepter {
+		padding: 15px;
+	}
+	.border {
+		padding: 15px;
+		margin: 30px;
+	}
+	.form-label {
+		font-size: 20px;
+		margin-bottom: 20px;
+	}
+</style>
+
+<div class="row justify-content-center">
+
+<div class="column">
+	<h1>Invites <span class="badge bg-dark text-light">outgoing</span></h1>
+
+	<% @invites = Invite.where(sender: current_user.email) %>
+	<% unless @invites.empty? %>
+
+	<table class="table table-hover">
+		<thead>
+			<tr>
+				<!-- <th>Sender</th> -->
+				<th>Reciever</th>
+				<th>Accepted</th>
+				<th colspan="3"></th>
+			</tr>
+		</thead>
+
+		<tbody id="dynamic">
+			<% @invites.each do |invite| %>
+			<tr>
+				<!-- <td><%= invite.sender %></td> -->
+				<td><%= invite.reciever %></td>
+				<td><%= invite.accepted %></td>
+			</tr>
+			<% end %>
+		</tbody>
+	</table>
+
+	<% else %>
+	<p>empty</p>
+	<%end%>
+
+	<br/>
+
+	<h1>Invites <span class="badge bg-dark text-light">incoming</span></h1>
+
+	<% @invites = Invite.where(reciever: current_user.email) %>
+	<% unless @invites.empty? %>
+
+	<table class="table table-hover">
+		<thead>
+			<tr>
+				<th>Sender</th>
+				<!-- <th>Reciever</th> -->
+				<th>Accepted</th>
+				<th colspan="3"></th>
+			</tr>
+		</thead>
+
+		<tbody id="dynamic">
+			<% @invites.each do |invite| %>
+			<tr>
+				<td><%= invite.sender %></td>
+				<!-- <td><%= invite.reciever %></td> -->
+				<td><%= invite.accepted %></td>
+				<td>
+					<% unless invite.accepted %>
+					<%= form_for :invite, url: "/invites/accept?sender=#{invite.sender}&reciever=#{invite.reciever}", :method => "post",
+					:remote => true, :id => 'input_form' do |form|%>
+					<div class="actions">
+						<%= form.submit("accept", :class => "btn btn-primary")%>
+					</div>
+					<% end %>
+					<% end %>
+				</td>
+			</tr>
+			<% end %>
+		</tbody>
+	</table>
+
+	<% else %>
+	<p>empty</p>
+	<%end%>
+
+	<br/>
+	<br/>
+	<p>user: <%= current_user.email %></p>
+</div>
+
+<div class="column">
+		<div class="border rounded">
+
+			<%= form_for :invite, url: "/invites", :method => "post",
+			:remote => true, :id => 'input_form' do |form|%>
 
 <!-- <div class="field">
     <%= form.label 'sender' %>
@@ -7,8 +105,9 @@
 </div> -->
 
 <div class="field">
-	<%= form.label 'reciever' %>
-	<%= form.text_field 'reciever' %>
+	<%= form.label('Send invite to', :class => "form-label") %>
+	<%= form.text_field('reciever', :class => "form-control", 
+	:type => "email", :placeholder => "name@example.com") %>
 </div>
 
 <!--   <div class="field">
@@ -17,88 +116,14 @@
 </div> -->
 
 <div class="actions">
-	<%= form.submit "send invite"%>
+	<%= form.submit("send", :class => "btn btn-primary") %>
 </div>
 <% end %>
-<p>auth:</p>
-<p><%= current_user.email %></p>
 
+</div>
+</div>
 
-
-
-
-
-<h1>Invites - outgoing</h1>
-
-<% @invites = Invite.where(sender: current_user.email) %>
-<% unless @invites.empty? %>
-
-<table>
-	<thead>
-		<tr>
-			<!-- <th>Sender</th> -->
-			<th>Reciever</th>
-			<th>Accepted</th>
-			<th colspan="3"></th>
-		</tr>
-	</thead>
-
-	<tbody id="dynamic">
-		<% @invites.each do |invite| %>
-		<tr>
-			<!-- <td><%= invite.sender %></td> -->
-			<td><%= invite.reciever %></td>
-			<td><%= invite.accepted %></td>
-		</tr>
-		<% end %>
-	</tbody>
-</table>
-
-<% else %>
-<p>empty</p>
-<%end%>
-
-<br/>
-
-<h1>Invites - incoming</h1>
-
-<% @invites = Invite.where(reciever: current_user.email) %>
-<% unless @invites.empty? %>
-
-<table>
-	<thead>
-		<tr>
-			<th>Sender</th>
-			<!-- <th>Reciever</th> -->
-			<th>Accepted</th>
-			<th colspan="3"></th>
-		</tr>
-	</thead>
-
-	<tbody id="dynamic">
-		<% @invites.each do |invite| %>
-		<tr>
-			<td><%= invite.sender %></td>
-			<!-- <td><%= invite.reciever %></td> -->
-			<td><%= invite.accepted %></td>
-			<td>
-				<% unless invite.accepted %>
-				<%= form_for :invite, url: "/invites/accept?sender=#{invite.sender}&reciever=#{invite.reciever}", :method => "post",
-				:remote => true, :id => 'input_form' do |form|%>
-				<div class="actions">
-					<%= form.submit "accept"%>
-				</div>
-				<% end %>
-				<% end %>
-			</td>
-		</tr>
-		<% end %>
-	</tbody>
-</table>
-
-<% else %>
-<p>empty</p>
-<%end%>
+</div>
 
 <script>
 	document.addEventListener('DOMContentLoaded', function () {
