@@ -5,6 +5,10 @@ class MessagesController < ApplicationController
   # GET /messages.json
   def index
     @messages = Message.all
+    # @message = Message.where("(reciever = '#{current_user.email}' 
+    #   and sender = '#{params[:target_email]}')
+    #   or (sender = '#{current_user.email}' 
+    #   and reciver = '#{params[:target_email]}')")
   end
 
   # GET /messages/1
@@ -25,10 +29,13 @@ class MessagesController < ApplicationController
   # POST /messages.json
   def create
     @message = Message.new(message_params)
+    @message.sender = current_user.email
+    #@message.text = params[:text]
+    @message.reciever = params[:reciever]
 
     respond_to do |format|
       if @message.save
-        format.html { redirect_to @message, notice: 'Message was successfully created.' }
+        #format.html { redirect_to @message, notice: 'Message was successfully created.' }
         format.json { render :show, status: :created, location: @message }
       else
         format.html { render :new }

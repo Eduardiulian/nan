@@ -1,6 +1,6 @@
 <style>
 	.border {
-		padding: 15px;
+		padding: 16px;
 	}
 	.msg {
 		word-wrap: break-word;
@@ -19,6 +19,9 @@
 		height: 400px;
 		overflow-y: scroll;
 	}
+	#sendRegion {
+		margin-top: 16px;
+	}
 </style>
 
 
@@ -35,10 +38,11 @@
 
 
 
-		
-			<div class="border rounded">
 
-			<%= form_for :invite, url: "/invites", :method => "post",
+		<div class="border rounded" id="sendRegion">
+
+			<%= form_for :message, url: "/messages/?reciever=#{params[:target_email]}",
+			 :method => "post",
 			:remote => true, :id => 'input_form' do |form|%>
 
 <!-- <div class="field">
@@ -46,10 +50,16 @@
     <%= form.text_field 'sender' %>
 </div> -->
 
-<div class="field">
-	<%= form.label('Send invite to', :class => "form-label") %>
-	<%= form.text_field('reciever', :class => "form-control", 
-	:type => "email", :placeholder => "name@example.com") %>
+<div class="field row">
+
+	<div class="col-10">
+		<%= form.text_field('text', :class => "form-control col-auto", 
+		 :placeholder => "message...") %>
+	</div>
+
+	<div class="col-1">
+		<%= form.submit("send", :class => "btn btn-primary col-auto") %>
+	</div>
 
 
 <!--   <div class="field">
@@ -57,16 +67,14 @@
     <%= form.check_box 'accepted' %>
 </div> -->
 
-<div class="actions">
-	<%= form.submit("send", :class => "btn btn-primary") %>
-</div>
 <% end %>
-</div>
-
-
 
 </div>
-	</div>
+
+
+
+</div>
+</div>
 </div>
 
 
