@@ -5,7 +5,6 @@
 	}
 	.border {
 		padding: 15px;
-		margin: 30px;
 	}
 	.form-label {
 		font-size: 20px;
@@ -14,11 +13,14 @@
 	.form-control {
 		margin-bottom: 8px;
 	}
+	.column {
+		margin-left: 30px;
+	}
 </style>
 
 <div class="row justify-content-center">
 
-	<div class="column offset-2">
+	<div class="column border rounded">
 		<h1>Invites <span class="badge bg-dark text-light">outgoing</span></h1>
 
 		<% @invites = Invite.where(sender: current_user.email) %>
@@ -49,6 +51,10 @@
 		<%end%>
 
 		<br/>
+	</div>
+
+		<!-- ===================================================== -->
+		<div class="column border rounded">
 
 		<h1>Invites <span class="badge bg-dark text-light">incoming</span></h1>
 
@@ -92,9 +98,13 @@
 
 		<br/>
 		<br/>
-		<p>user: <%= current_user.email %></p>
+		<div align="bottom">current user: <%= current_user.email %></div>
 	</div>
 
+
+
+
+<!-- =========================================== -->
 	<div class="column">
 		<div class="border rounded">
 
@@ -128,6 +138,7 @@
 </div>
 </div>
 
+</div>
 </div>
 
 <script>
