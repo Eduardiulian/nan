@@ -22,25 +22,18 @@
 </style>
 
 
-<h1>Chats#chat</h1>
-<p>Find me in app/views/chats/chat.html.erb</p>
 
-<%= link_to 'refresh', "/chats/refresh.json", class: "btn"%>
-<div id="dynamic"></div>
 
 
 <div class="row justify-content-center" id="dialogRow">
-	<div class="col-8 border rounded" id="dialog">
+	<div class="col-8" >
+		<!-- <h1 align="center">Chat</h1> -->
 
+		<div id="dialog" class="border rounded">
+			
+		</div>
 	</div>
 </div>
-
-
-
-
-
-
-
 
 
 
@@ -88,8 +81,12 @@
 	msgBlock = ""
 	data.forEach(function (item, i, arr) {
       	//result.innerHTML += item.sender
-      	msgBlock += renderSideMsg("ooiyouib;biuobioboboubobobiobobobobo;bbobo")
-      	msgBlock += renderUserMsg(item.text)
+      	console.log("sender: " + item.sender)
+      	if(item.sender == email){
+      		msgBlock += renderSideMsg(item.text)
+      	}else{
+      		msgBlock += renderUserMsg(item.text)
+      	}
       });
 	result.innerHTML = "<table class=\"table-borderless\" id=\"msgFeed\">" + msgBlock + "</table>"
 }

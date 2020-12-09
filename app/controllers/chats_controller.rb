@@ -7,6 +7,7 @@ class ChatsController < ApplicationController
 	def refresh
 		@target_email = params[:target_email]
 	    logger.info("~log_target_refresh: " + @target_email.to_s)
+	    logger.info("~log_target_refresh: " + current_user.email)
 	    msgs = Message.all
 		respond_to do |format|
 			format.json do
