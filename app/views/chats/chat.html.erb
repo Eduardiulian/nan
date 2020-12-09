@@ -32,6 +32,40 @@
 		<div id="dialog" class="border rounded">
 			
 		</div>
+
+
+
+		
+			<div class="border rounded">
+
+			<%= form_for :invite, url: "/invites", :method => "post",
+			:remote => true, :id => 'input_form' do |form|%>
+
+<!-- <div class="field">
+    <%= form.label 'sender' %>
+    <%= form.text_field 'sender' %>
+</div> -->
+
+<div class="field">
+	<%= form.label('Send invite to', :class => "form-label") %>
+	<%= form.text_field('reciever', :class => "form-control", 
+	:type => "email", :placeholder => "name@example.com") %>
+
+
+<!--   <div class="field">
+    <%= form.label 'accepted' %>
+    <%= form.check_box 'accepted' %>
+</div> -->
+
+<div class="actions">
+	<%= form.submit("send", :class => "btn btn-primary") %>
+</div>
+<% end %>
+</div>
+
+
+
+</div>
 	</div>
 </div>
 
