@@ -20,19 +20,19 @@
   </div>
 
   <div class="field">
-    <%= form.label :password %>
+    <%= form.label (I18n.t 'signup.password') %>
     <br/>
     <%= form.password_field :password %>
   </div>
 
   <div class="field">
-    <%= form.label :password_confirmation %>
+    <%= form.label (I18n.t 'signup.passwordconf') %>
     <br/>
     <%= form.password_field :password_confirmation %>
   </div>
 
   <div class="actions">
-    <%= form.submit(nil, :class => "btn btn-primary") %>
+    <%= form.submit((I18n.t 'signup.signup'), :class => "btn btn-primary") %>
   </div>
 
 <% end %>

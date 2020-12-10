@@ -2,6 +2,7 @@ ru:
   hello: "Привет"
   locale:
     "Сменить язык"
+  send: "отправить"
   login:
     login: "Войти"
     password: "Пароль"
@@ -23,3 +24,8 @@ ru:
     sendto: "Отправить приглашение для"
     send: "отправить"
     accept: "принять"
+  signup:
+    password: "Пароль"
+    passwordconf: "Подтверждение пароля"
+    signup: "Зарегистрироваться"
+    registration: "Регистрация"

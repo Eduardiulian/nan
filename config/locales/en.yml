@@ -33,6 +33,7 @@ en:
   hello: "Hello world"
   locale:
     "Switch locale"
+  send: "send"
   login:
     login: "Login"
     password: "Password"
@@ -54,3 +55,8 @@ en:
     sendto: "Send invite to"
     send: "send"
     accept: "accept"
+  signup:
+    password: "Password"
+    passwordconf: "Password confirmation"
+    signup: "Sign up"
+    registration: "Registration"
