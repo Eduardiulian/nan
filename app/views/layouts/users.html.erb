@@ -1,6 +1,12 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <style>
+      #content {
+        margin-top: 32px;
+      }
+      
+    </style>
     
     <title>Chat</title>
     <%= csrf_meta_tags %>
@@ -11,6 +17,20 @@
   </head>
 
   <body class="container">
+
+
+<nav class="navbar navbar-dark navbar-expand bg-dark">
+  <div class="container-fluid">
+     <ul class="navbar-nav mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link active bg-transparent" aria-current="page" href="/automorphs/switch">Switch locale</a>
+        </li>
+      </ul>
+  </div>
+</nav>
+
+<div id="content">
     <%= yield %>
+  </div>
   </body>
 </html>

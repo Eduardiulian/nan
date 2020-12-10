@@ -2,6 +2,7 @@
 
 # implements main controller
 class AutomorphsController < ApplicationController
+	skip_before_action :require_auth, only: :switch
 	def input
 		redirect_to invitelist_url
 	end

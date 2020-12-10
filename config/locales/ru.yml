@@ -1,2 +1,6 @@
 ru:
- hello: "Привет"
+  hello: "Привет"
+  login:
+    login: "Войти"
+    password: "Пароль"
+    signup: "Регистрация"
