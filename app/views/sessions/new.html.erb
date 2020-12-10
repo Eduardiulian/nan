@@ -4,6 +4,9 @@
 	<style>
 		.border{
 			padding: 16px;
+			padding-left: 32px;
+			padding-right: 32px;
+			margin-top: 32px;
 		}	
 		h1 {
 			padding-bottom: 16px; 
@@ -23,11 +26,13 @@
 			<%= form_tag sessions_path do |form| %>
 			<div class="field">
 				<%= label_tag :email %>
+				<br/>
 				<%= text_field_tag :email %>
 			</div>  
 
 			<div class="field">
 				<%= label_tag :password %>
+				<br/>
 				<%= password_field_tag :password %>
 			</div>  
 
@@ -36,8 +41,8 @@
 			</div>
 			<% end %>
 		</br>
-		<div align="center">
-			<%= link_to "Sign Up", signup_path %>
+		<div align="center" class="bg-transparent">
+			<%= link_to("Sign Up", signup_path, :class => "bg-transparent") %>
 		</div>
 
 	</div>

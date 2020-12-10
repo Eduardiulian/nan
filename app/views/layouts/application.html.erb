@@ -1,7 +1,14 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Lab12</title>
+    <style>
+      #content {
+        margin-top: 32px;
+      }
+      
+    </style>
+
+    <title>Chat</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
@@ -10,6 +17,30 @@
   </head>
 
   <body class="container">
+
+
+<nav class="navbar navbar-dark navbar-expand bg-primary">
+  <div class="container-fluid">
+    <a class="navbar-brand bg-transparent" href="/">MyApp</a>
+     <ul class="navbar-nav mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link active bg-transparent" aria-current="page" href="chatlist">Chats</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link active bg-transparent" aria-current="page" href="invitelist">Invites</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link active bg-transparent" aria-current="page" href="logout">Logout</a>
+        </li>
+      </ul>
+  </div>
+</nav>
+
+
+
+<div id="content">
     <%= yield %>
+  </div>
+
   </body>
 </html>
