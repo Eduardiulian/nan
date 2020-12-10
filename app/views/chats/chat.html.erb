@@ -42,7 +42,7 @@
 		<div class="border rounded" id="sendRegion">
 
 			<%= form_for :message, url: "/messages/?reciever=#{params[:target_email]}",
-			 :method => "post",
+			:method => "post",
 			:remote => true, :id => "inputForm" do |form|%>
 
 <!-- <div class="field">
@@ -54,7 +54,7 @@
 
 	<div class="col-10">
 		<%= form.text_field('text', :class => "form-control col-auto", 
-		 :placeholder => "message...", :id => "msgText") %>
+		:placeholder => "message...", :id => "msgText") %>
 	</div>
 
 	<div class="col-1">
@@ -87,55 +87,55 @@
 	// ===========================================================
 
 	function sleep(ms) {
-ms += new Date().getTime();
-while (new Date() < ms){}
-} 
+		ms += new Date().getTime();
+		while (new Date() < ms){}
+	} 
 
-	async function sendMsgJs(){
-		console.log('send pressed')
-		form = document.getElementsByTagName("form")[0];
+async function sendMsgJs(){
+	console.log('send pressed')
+	form = document.getElementsByTagName("form")[0];
 	//	form.submit();
 	//	async() => {
 	//	sleep(3000);
 	//	form.reset();
 	//}
 	//	form.value = "";
-	}
+}
 
 
 
-	function renderSideMsg(text){
-		s = "<tr><td>" +
-		"<h5><div class=\"border msg rounded\">" + text + "</div></h5>" + 
-		"</td><td></td></tr>"
-		return s
-	}
+function renderSideMsg(text){
+	s = "<tr><td>" +
+	"<h5><div class=\"border msg rounded\">" + text + "</div></h5>" + 
+	"</td><td></td></tr>"
+	return s
+}
 
-	function renderUserMsg(text){
-		s = "<tr><td></td><td>" +
-		"<div class=\"border msg rounded\"><h5>" + text + "</h5></div>" + 
-		"</td></tr>"
-		return s
-	}
-
-
-	function getParameterByName(name, url = window.location.href) {
-		name = name.replace(/[\[\]]/g, '\\$&');
-		var regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)'),
-		results = regex.exec(url);
-		if (!results) return null;
-		if (!results[2]) return '';
-		return decodeURIComponent(results[2].replace(/\+/g, ' '));
-	}
-	var email = getParameterByName('target_email');
-	console.log(email)
+function renderUserMsg(text){
+	s = "<tr><td></td><td>" +
+	"<div class=\"border msg rounded\"><h5>" + text + "</h5></div>" + 
+	"</td></tr>"
+	return s
+}
 
 
+function getParameterByName(name, url = window.location.href) {
+	name = name.replace(/[\[\]]/g, '\\$&');
+	var regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)'),
+	results = regex.exec(url);
+	if (!results) return null;
+	if (!results[2]) return '';
+	return decodeURIComponent(results[2].replace(/\+/g, ' '));
+}
+var email = getParameterByName('target_email');
+console.log(email)
 
 
-	handleAjaxSuccess = function (data, user) {
-		console.log("ajax success")
-		console.log(data.type)
+
+
+handleAjaxSuccess = function (data, user) {
+	console.log("ajax success")
+	console.log(data.type)
 		//[data, status, xhr] = event.detail;
 		var result = document.getElementById("dialog");
 	//document.write("~tick")
@@ -153,6 +153,14 @@ while (new Date() < ms){}
 }
 
 const request = new XMLHttpRequest();
+
+
+console.log("try init request")
+const url = "/chats/refresh.json?target_email=" + email;
+request.open('GET', url); 
+request.setRequestHeader('Content-Type', 'application/json');
+request.send();
+
 
 setInterval(function() {
 

@@ -1,46 +1,29 @@
-<h1>Automorphs#view</h1>
-<p>Find me in app/views/automorphs/view.html.erb</p>
-<table>
-	<p id="result">
-		<% if @result.match?(/err/)%>
-		<%case @result.last.to_i%>
-		<%when 1%>
-		<%="nil input"%> 
-		<%when 2%>
-		<%="incorrect input"%>
-		<%when 3%>
-		<%="no such sequences to output"%>
-		<%else%>
-		<%="unkonown error"%>
-		<%end%>
-		<%else%>
-		<% @result = @result.split("],").map{|x| x.gsub("[", "")}.map{|x| x.gsub("]","")} %>
-		<% if @result == [""] %>
-		<p>no target subsequences found</p>
-		<% else %>
-		<table>
-			<tr><td>sequence</td><td>size</td></tr>
-			<% @result.each do |elem| %>
-			<% unless elem.size == 0 %>
-			<tr>
-				<td><%= elem%></td>
-				<td><%= elem.split(', ').size%></td>
-			</tr>
-			<% end %>
-			<% end %>
+<style>
+	.border{
+		padding: 16px;
+		padding-left: 32px;
+		padding-right: 32px;
+		margin-top: 32px;
+	}	
+	h1 {
+		padding-bottom: 16px; 
+	}
+</style>
 
-			<tr>
-				<td>longest sequence:</td>
-				<td><%= @result.max{|elem, next_elem| elem.split(', ').size <=> 
-					next_elem.split(', ').size}%></td>
-			</tr>
-			<tr>
-				<td>Max size:</td>
-				<td><%= @result.max{|elem, next_elem| elem.split(', ').size <=> 
-					next_elem.split(', ').size}.split(', ').size%></td>
-			</tr>
-		</table>
-		<% end %>
-		<%end%>
-	</p> 
-	<%= link_to "Search in other sequence(array)", :automorphs_input %>
+
+<div class="row justify-content-center">
+	<div class="col-4 border rounded">
+
+		<div align="center">
+			<h1>Information</h1>
+		</div>
+
+		<p>My small app was made as semester project for course of RoR in BMSTU</p>
+		<p>Repo: <a class="active bg-transparent" aria-current="page" href="https://github.com/Trickster2038/railsProj">github.com/Trickster2038/railsProj</a></p>
+
+		<br/>
+		<p>Your young web-developer and student,<br/>
+		Astkhov Sergey ICS-6 Group 32</p>
+
+	</div>
+</div>
