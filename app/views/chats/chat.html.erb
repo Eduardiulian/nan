@@ -43,7 +43,7 @@
 
 			<%= form_for :message, url: "/messages/?reciever=#{params[:target_email]}",
 			 :method => "post",
-			:remote => true, :id => 'input_form' do |form|%>
+			:remote => true, :id => "inputForm" do |form|%>
 
 <!-- <div class="field">
     <%= form.label 'sender' %>
@@ -54,11 +54,11 @@
 
 	<div class="col-10">
 		<%= form.text_field('text', :class => "form-control col-auto", 
-		 :placeholder => "message...") %>
+		 :placeholder => "message...", :id => "msgText") %>
 	</div>
 
 	<div class="col-1">
-		<%= form.submit("send", :class => "btn btn-primary col-auto") %>
+		<%= form.submit("send", :class => "btn btn-primary col-auto", :onclick => "sendMsgJs()") %>
 	</div>
 
 
@@ -85,6 +85,25 @@
 
 <script>
 	// ===========================================================
+
+	function sleep(ms) {
+ms += new Date().getTime();
+while (new Date() < ms){}
+} 
+
+	async function sendMsgJs(){
+		console.log('send pressed')
+		form = document.getElementsByTagName("form")[0];
+	//	form.submit();
+	//	async() => {
+	//	sleep(3000);
+	//	form.reset();
+	//}
+	//	form.value = "";
+	}
+
+
+
 	function renderSideMsg(text){
 		s = "<tr><td>" +
 		"<h5><div class=\"border msg rounded\">" + text + "</div></h5>" + 
