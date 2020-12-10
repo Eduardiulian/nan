@@ -6,3 +6,7 @@ ru:
     login: "Войти"
     password: "Пароль"
     signup: "Регистрация"
+  nav:
+    chats: "Чаты"
+    invites: "Приглашения"
+    logout: "Выйти"

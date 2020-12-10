@@ -37,3 +37,7 @@ en:
     login: "Login"
     password: "Password"
     signup: "Sign Up"
+  nav:
+    chats: "Chats"
+    invites: "Invites"
+    logout: "Logout"
