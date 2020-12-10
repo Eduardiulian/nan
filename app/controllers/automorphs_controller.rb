@@ -18,5 +18,6 @@ class AutomorphsController < ApplicationController
 			I18n.default_locale = :en
 		end
 		redirect_to invitelist_url 
+		#redirect_to :back
 	end
 end

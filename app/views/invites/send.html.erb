@@ -21,7 +21,8 @@
 <div class="row justify-content-center">
 
 	<div class="column border rounded">
-		<h1>Invites <span class="badge bg-dark text-light">outgoing</span></h1>
+		<h3><%= I18n.t 'invites.invites' %> <span class="badge bg-dark text-light">
+			<%= I18n.t 'invites.outgoing' %></span></h3>
 
 		<% @invites = Invite.where(sender: current_user.email) %>
 		<% unless @invites.empty? %>
@@ -30,8 +31,8 @@
 			<thead>
 				<tr>
 					<!-- <th>Sender</th> -->
-					<th>Reciever</th>
-					<th>Accepted</th>
+					<th><%= I18n.t 'invites.reciever' %></th>
+					<th><%= I18n.t 'invites.accepted' %></th>
 				</tr>
 			</thead>
 
@@ -56,7 +57,8 @@
 		<!-- ===================================================== -->
 		<div class="column border rounded">
 
-		<h1>Invites <span class="badge bg-dark text-light">incoming</span></h1>
+		<h3><%= I18n.t 'invites.invites' %> <span class="badge bg-dark text-light">
+			<%= I18n.t 'invites.incoming' %></span></h3>
 
 		<% @invites = Invite.where(reciever: current_user.email) %>
 		<% unless @invites.empty? %>
@@ -64,9 +66,9 @@
 		<table class="table table-hover">
 			<thead>
 				<tr>
-					<th>Sender</th>
+					<th><%= I18n.t 'invites.sender' %></th>
 					<!-- <th>Reciever</th> -->
-					<th>Accepted</th>
+					<th><%= I18n.t 'invites.accepted' %></th>
 					<th colspan="3"></th>
 				</tr>
 			</thead>
@@ -82,7 +84,7 @@
 						<%= form_for :invite, url: "/invites/accept?sender=#{invite.sender}&reciever=#{invite.reciever}", :method => "post",
 						:remote => true, :id => 'input_form' do |form|%>
 						<div class="actions">
-							<%= form.submit("accept", :class => "btn btn-primary")%>
+							<%= form.submit((I18n.t'invites.accept'), :class => "btn btn-primary")%>
 						</div>
 						<% end %>
 						<% end %>
@@ -117,7 +119,7 @@
 </div> -->
 
 <div class="field">
-	<%= form.label('Send invite to', :class => "form-label") %>
+	<%= form.label((I18n.t'invites.sendto'), :class => "form-label") %>
 	<%= form.text_field('reciever', :class => "form-control", 
 	:type => "email", :placeholder => "name@example.com") %>
 
@@ -128,7 +130,7 @@
 </div> -->
 
 <div class="actions">
-	<%= form.submit("send", :class => "btn btn-primary") %>
+	<%= form.submit((I18n.t'invites.send'), :class => "btn btn-primary") %>
 </div>
 <% end %>
 </div>

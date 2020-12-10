@@ -16,7 +16,7 @@ h1{
 	<div class="column border rounded">
 
 
-<h1 align="center">Chats</h1>
+<h1 align="center"><%= I18n.t 'chats.chats' %></h1>
 
 <% @invites = Invite.where(sender: current_user.email, accepted: true) %>
 <% unless @invites.empty? %>
@@ -38,7 +38,7 @@ h1{
 				<td><%= invite.reciever %></td>
 				<!-- <td><%= invite.accepted %></td> -->
 				<td>
-					<%= link_to 'Go to chat', "/chats/chat?target_email=#{invite.reciever}", class: "btn btn-primary text-light"%>
+					<%= link_to (I18n.t 'chats.goto') , "/chats/chat?target_email=#{invite.reciever}", class: "btn btn-primary text-light"%>
 				</td>
 			</tr>
 			<% end %>

@@ -10,3 +10,16 @@ ru:
     chats: "Чаты"
     invites: "Приглашения"
     logout: "Выйти"
+  chats:
+    chats: "Чаты"
+    goto: "Перейти в чат" 
+  invites:
+    incoming: "Входящие"
+    outgoing: "Исходящие"
+    invites: "Приглашения"
+    accepted: "Принято"
+    sender: "Отправитель"
+    reciever: "Получатель"
+    sendto: "Отправить приглашение для"
+    send: "отправить"
+    accept: "принять"

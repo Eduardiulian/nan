@@ -41,3 +41,16 @@ en:
     chats: "Chats"
     invites: "Invites"
     logout: "Logout"
+  chats:
+    chats: "Chats"
+    goto: "Go to chat"  
+  invites:
+    incoming: "Incoming"
+    outgoing: "Outgoing"
+    invites: "Invites"
+    accepted: "Accepted"
+    sender: "Sender"
+    reciever: "Reciever"
+    sendto: "Send invite to"
+    send: "send"
+    accept: "accept"
