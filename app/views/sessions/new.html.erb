@@ -18,10 +18,10 @@
 		<div class="column border rounded">
 
 			<div align="center">
-				<h1>Login</h1>
+				<h1><%= I18n.t 'login.login' %></h1>
 			</div>
 
-			<p><%= I18n.t 'hello' %></p>
+			<!-- <p><%= I18n.t 'hello' %></p> -->
 
 			<p id="alert"><%= alert %></p>
 
@@ -33,18 +33,18 @@
 			</div>  
 
 			<div class="field">
-				<%= label_tag :password %>
+				<%= label_tag I18n.t 'login.password'  %>
 				<br/>
 				<%= password_field_tag :password %>
 			</div>  
 
 			<div class="actions">
-				<%= submit_tag "Login", :class => "btn btn-primary" %>
+				<%= submit_tag (I18n.t 'login.login'), :class => "btn btn-primary" %>
 			</div>
 			<% end %>
 		</br>
 		<div align="center" class="bg-transparent">
-			<%= link_to("Sign Up", signup_path, :class => "bg-transparent") %>
+			<%= link_to((I18n.t 'login.signup'), signup_path, :class => "bg-transparent") %>
 		</div>
 
 	</div>

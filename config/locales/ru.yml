@@ -1,5 +1,7 @@
 ru:
   hello: "Привет"
+  locale:
+    "Сменить язык"
   login:
     login: "Войти"
     password: "Пароль"
