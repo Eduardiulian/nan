@@ -24,7 +24,8 @@ gem 'jbuilder', '~> 2.7'
 gem 'bcrypt', '~> 3.1.7'
 
 gem  'bootstrap',     '~> 4.0.0.alpha6'
-gem 'jquery-rails'    
+gem 'jquery-rails'  
+gem 'i18n'  
 
 
 # Use Active Storage variant

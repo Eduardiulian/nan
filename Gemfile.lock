@@ -220,6 +220,7 @@ DEPENDENCIES
   bootstrap (~> 4.0.0.alpha6)
   byebug
   capybara (>= 2.15)
+  i18n
   jbuilder (~> 2.7)
   jquery-rails
   puma (~> 4.1)

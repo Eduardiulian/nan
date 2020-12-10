@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   root 'automorphs#input'
   get 'automorphs/input'
   get 'automorphs/view'
+  get 'automorphs/switch'
   get 'automorphs/cached', :defaults => { :format => 'xml' }
   get 'automorphs/userlist', :defaults => { :format => 'xml' }
 
