@@ -1,8 +1,8 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  sender: MyString
-  reciever: MyString
+  sender: mysender@mail.ru
+  reciever: reciever@gmail.com
   accepted: false
 
 two:

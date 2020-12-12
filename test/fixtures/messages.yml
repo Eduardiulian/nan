@@ -1,9 +1,9 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  sender: MyString
-  reciever: MyString
-  text: MyString
+  sender: sender@mail.ru
+  reciever: reciever@mail.ru
+  text: qwertys
 
 two:
   sender: MyString
