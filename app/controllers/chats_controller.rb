@@ -12,7 +12,7 @@ class ChatsController < ApplicationController
 	     msgs = Message.where("(reciever = '#{current_user.email}' \
       and sender = '#{params[:target_email]}') \
       or (sender = '#{current_user.email}'  \
-      and reciever = '#{params[:target_email]}')").limit(20)
+      and reciever = '#{params[:target_email]}')")  #.limit(20)
 		respond_to do |format|
 			format.json do
 				render json: msgs.to_json

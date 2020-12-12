@@ -58,7 +58,7 @@
 	</div>
 
 	<div class="col-1">
-		<%= form.submit((I18n.t 'send'), :class => "btn btn-primary col-auto", :onclick => "sendMsgJs()") %>
+		<%= form.submit((I18n.t 'send'), :class => "btn btn-primary col-auto") %>
 	</div>
 
 
@@ -86,21 +86,21 @@
 <script>
 	// ===========================================================
 
-	function sleep(ms) {
-		ms += new Date().getTime();
-		while (new Date() < ms){}
-	} 
+	// function sleep(ms) {
+	// 	ms += new Date().getTime();
+	// 	while (new Date() < ms){}
+	// } 
 
-async function sendMsgJs(){
-	console.log('send pressed')
-	form = document.getElementsByTagName("form")[0];
-	//	form.submit();
-	//	async() => {
-	//	sleep(3000);
-	//	form.reset();
-	//}
-	//	form.value = "";
-}
+// async function sendMsgJs(){
+// 	console.log('send pressed')
+// 	form = document.getElementsByTagName("form")[0];
+// 	//	form.submit();
+// 	//	async() => {
+// 	//	sleep(3000);
+// 	//	form.reset();
+// 	//}
+// 	//	form.value = "";
+// }
 
 
 
@@ -170,7 +170,7 @@ setInterval(function() {
 	request.setRequestHeader('Content-Type', 'application/json');
 	request.send();
 
-}, 5000);
+}, 3000);
 
 request.addEventListener("readystatechange", () => {
 	console.log("state change");
