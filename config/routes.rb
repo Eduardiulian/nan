@@ -16,7 +16,9 @@ Rails.application.routes.draw do
   resources :sessions, only: [:new, :create, :destroy]  
   post 'invites/accept'
   get 'chats/chat'
+  
   get 'chats/refresh'
+
   get 'signup', to: 'users#new', as: 'signup'
   get 'login', to: 'sessions#new', as: 'login'
   post 'loginp', to: 'sessions#create', as: 'loginp'
