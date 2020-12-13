@@ -1,20 +1,18 @@
+# frozen_string_literal: true
+
+# Controller for messages
 class MessagesController < ApplicationController
-  before_action :set_message, only: [:show, :edit, :update, :destroy]
+  before_action :set_message, only: %i[show edit update destroy]
 
   # GET /messages
   # GET /messages.json
   def index
     @messages = Message.all
-    # @message = Message.where("(reciever = '#{current_user.email}' 
-    #   and sender = '#{params[:target_email]}')
-    #   or (sender = '#{current_user.email}' 
-    #   and reciver = '#{params[:target_email]}')")
   end
 
   # GET /messages/1
   # GET /messages/1.json
-  def show
-  end
+  def show; end
 
   # GET /messages/new
   def new
@@ -22,20 +20,19 @@ class MessagesController < ApplicationController
   end
 
   # GET /messages/1/edit
-  def edit
-  end
+  def edit; end
 
   # POST /messages
   # POST /messages.json
   def create
     @message = Message.new(message_params)
     @message.sender = current_user.email
-    #@message.text = params[:text]
+    # @message.text = params[:text]
     @message.reciever = params[:reciever]
 
     respond_to do |format|
       if @message.save
-        format.html #{ redirect_to @message, notice: 'Message was successfully created.' }
+        format.html # { redirect_to @message, notice: 'Message was successfully created.' }
         format.json { render :show, status: :created, location: @message }
       else
         format.html { render :new }
@@ -69,13 +66,14 @@ class MessagesController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_message
-      @message = Message.find(params[:id])
-    end
 
-    # Only allow a list of trusted parameters through.
-    def message_params
-      params.require(:message).permit(:sender, :reciever, :text)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_message
+    @message = Message.find(params[:id])
+  end
+
+  # Only allow a list of trusted parameters through.
+  def message_params
+    params.require(:message).permit(:sender, :reciever, :text)
+  end
 end

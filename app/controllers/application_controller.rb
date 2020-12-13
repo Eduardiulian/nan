@@ -1,6 +1,9 @@
+# frozen_string_literal: true
+
+# main app controller
 class ApplicationController < ActionController::Base
   helper_method :current_user
-  before_action :require_auth, except: [:new, :create]
+  before_action :require_auth, except: %i[new create]
   # :edit, :destroy, :show, :index
 
   def current_user
@@ -13,8 +16,8 @@ class ApplicationController < ActionController::Base
 
   def require_auth
     current_user
-    msg = @current_user ? "authed" : "not_authed"
-    logger.info("~log: " + msg)
+    msg = @current_user ? 'authed' : 'not_authed'
+    logger.info('~log: ' + msg)
     redirect_to login_path unless @current_user
   end
 end

@@ -1,5 +1,8 @@
+# frozen_string_literal: true
+
+# Controller for invites
 class InvitesController < ApplicationController
-  before_action :set_invite, only: [:show, :edit, :update, :destroy]
+  before_action :set_invite, only: %i[show edit update destroy]
 
   # GET /invites
   # GET /invites.json
@@ -9,8 +12,7 @@ class InvitesController < ApplicationController
 
   # GET /invites/1
   # GET /invites/1.json
-  def show
-  end
+  def show; end
 
   # GET /invites/new
   def new
@@ -18,54 +20,54 @@ class InvitesController < ApplicationController
   end
 
   # GET /invites/1/edit
-  def edit
-  end
+  def edit; end
 
   def accept
-    logger.info("~log:" + "accept")
+    logger.info('~log:' + 'accept')
     logger.info(params.to_s)
     record = Invite.find_by(reciever: params[:reciever], sender: params[:sender])
     record.accepted = true
-    record.save 
+    record.save
+    record2 = Invite.find_or_initialize_by(reciever: params[:sender], sender: params[:reciever])
+    record2.accepted = true
+    record2.save
   end
 
   # POST /invites
   # POST /invites.json
   def create
-    logger.info("~log_invite: " + invite_params.to_s)
-    logger.info("~log_invite: " + invite_params["reciever"])
+    logger.info('~log_invite: ' + invite_params.to_s)
+    logger.info('~log_invite: ' + invite_params['reciever'])
     @invite = Invite.new(invite_params)
     @invite.sender = current_user.email
     @invite.accepted = false
 
     # check if target exists?
-    invite_old = Invite.find_by(sender: current_user.email, reciever: invite_params["reciever"])
-    invite_back = Invite.find_by(reciever: current_user.email, sender: invite_params["reciever"])
+    invite_old = Invite.find_by(sender: current_user.email, reciever: invite_params['reciever'])
+    invite_back = Invite.find_by(reciever: current_user.email, sender: invite_params['reciever'])
 
-    logger.info("~log_no_old: " + invite_old.nil?.to_s)
-    logger.info("~log_no_back: " + invite_back.nil?.to_s)
+    logger.info('~log_no_old: ' + invite_old.nil?.to_s)
+    logger.info('~log_no_back: ' + invite_back.nil?.to_s)
 
     ok = true
 
-    if invite_old.nil?
-      ok = @invite.save
-    end
+    ok = @invite.save if invite_old.nil?
 
     unless invite_back.nil?
       invite_back.accepted = true
-      ok = ((invite_back.save) && ok)
+      ok = (invite_back.save && ok)
       if invite_old.nil?
         @invite.accepted = true
-        ok = ((@invite.save) && ok)
+        ok = (@invite.save && ok)
       else
         invite_old.accepted = true
-        ok = ((invite_old.save) && ok)
+        ok = (invite_old.save && ok)
       end
     end
 
     respond_to do |format|
       if ok
-        format.html #{ redirect_to @invite, notice: 'Invite was successfully created.' }
+        format.html # { redirect_to @invite, notice: 'Invite was successfully created.' }
         format.json { render :show, status: :created, location: @invite }
       else
         format.html { render :new }
@@ -99,13 +101,14 @@ class InvitesController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_invite
-      @invite = Invite.find(params[:id])
-    end
 
-    # Only allow a list of trusted parameters through.
-    def invite_params
-      params.require(:invite).permit(:sender, :reciever, :accepted)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_invite
+    @invite = Invite.find(params[:id])
   end
+
+  # Only allow a list of trusted parameters through.
+  def invite_params
+    params.require(:invite).permit(:sender, :reciever, :accepted)
+  end
+end
