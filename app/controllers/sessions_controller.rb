@@ -4,6 +4,7 @@ class SessionsController < ApplicationController
   end  
 
   def create
+    return render unless request.post?
     user = User.find_by_email(params[:email])
     if user && user.authenticate(params[:password])
       session[:user_id] = user.id

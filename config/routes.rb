@@ -8,8 +8,8 @@ Rails.application.routes.draw do
   get 'automorphs/input'
   get 'automorphs/view'
   get 'automorphs/switch'
-  get 'automorphs/cached', :defaults => { :format => 'xml' }
-  get 'automorphs/userlist', :defaults => { :format => 'xml' }
+  # get 'automorphs/cached', :defaults => { :format => 'xml' }
+  # get 'automorphs/userlist', :defaults => { :format => 'xml' }
 
 
   resources :users
@@ -19,6 +19,9 @@ Rails.application.routes.draw do
   get 'chats/refresh'
   get 'signup', to: 'users#new', as: 'signup'
   get 'login', to: 'sessions#new', as: 'login'
+  post 'loginp', to: 'sessions#create', as: 'loginp'
+  #match 'sessions/login', via: %i[post get], as: :login
+
   get 'logout', to: 'sessions#destroy', as: 'logout'
   get 'edit', to: 'users#edit', as: 'edit'
   get 'userspage', to: 'users#index', as: 'userspage'

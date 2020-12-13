@@ -14,6 +14,7 @@ class ChatsController < ApplicationController
       or (sender = '#{current_user.email}'  \
       and reciever = '#{params[:target_email]}')")  #.limit(20)
 		respond_to do |format|
+			format.html 
 			format.json do
 				render json: msgs.to_json
 			end
