@@ -61,3 +61,7 @@ en:
     passwordconf: "Password confirmation"
     signup: "Sign up"
     registration: "Registration"
+  info:
+    title: "Information"
+    p1: "My small app was made as semester project for course of RoR in BMSTU"
+    p2: "Astkhov Sergey ICS-6 Group 32"

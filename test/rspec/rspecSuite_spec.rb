@@ -17,18 +17,7 @@ describe 'RspecSuite' do
     @driver.find_element(:name, 'commit').click
     expect(@driver.find_element(:id, 'alert').text).to eq('Email or password is invalid')
   end
-  # it 'fakeregistration' do
-  #   @driver.get('http://127.0.0.1:3000/login')
-  #   #@driver.manage.resize_to(892, 706)
-  #   sleep 2
-  #   @driver.find_element(:link_text, 'Sign Up').click
-  #   sleep 7
-  #   #@driver.find_element(:id, 'user_email').click
-  #   @driver.find_element(:id, 'user_email').send_keys('k k \'lm\'lm')
-  #   @driver.find_element(:name, 'commit').click
-  #   sleep 5
-  #   expect(@driver.find_element(:css, 'ul:nth-child(2) > li:nth-child(1)').text).to eq('Password can\'t be blank')
-  # end
+
   it 'login' do
     @driver.get('http://127.0.0.1:3000/')
     @driver.find_element(:id, 'email').send_keys('test5@gmail.com')
