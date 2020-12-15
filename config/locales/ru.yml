@@ -25,7 +25,18 @@ ru:
     send: "отправить"
     accept: "принять"
   signup:
+    errors: "Учетная запись не может быть сохранена так как"
     password: "Пароль"
     passwordconf: "Подтверждение пароля"
     signup: "Зарегистрироваться"
     registration: "Регистрация"
+  activerecord:
+    errors:
+     models:
+      user:
+        attributes:
+          password:
+            blank: " - пароль не может быть пустым"
+          email:
+            blank: " - email не может быть пустым"
+            taken: " - email уже занят"

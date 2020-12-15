@@ -56,6 +56,7 @@ en:
     send: "send"
     accept: "accept"
   signup:
+    errors: "Account cannot be saved due to"
     password: "Password"
     passwordconf: "Password confirmation"
     signup: "Sign up"
