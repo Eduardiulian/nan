@@ -1,24 +1,14 @@
-# README
+# Chat on rails
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## Функциональность и архитектура
 
-Things you may want to cover:
+Веб-приложение представляет из себя чат с ситемой приглашений, реализованный на Ruby on rails. Аутентификационные данные, приглашения и сообщения сохраняются в БД Sqlite.
 
-* Ruby version
+## Скриншоты
 
-* System dependencies
+![](screens/screen1.jpg)
 
-* Configuration
+![](screens/screen2.jpg)
 
-* Database creation
+![](screens/screen3.jpg)
 
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
